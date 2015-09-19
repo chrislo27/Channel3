@@ -42,9 +42,9 @@ public class MainMenuScreen extends Updateable{
 		titleFont.draw(main.batch, Translator.getMsg("gamename"), 256, Main.convertY(256));
 		
 		main.vectorFont.setColor(1, 1, 1, 1);
-		main.vectorFont.draw(main.batch, "> OpTiOn 1", 300, Main.convertY(256 + 128));
-		main.vectorFont.draw(main.batch, "> option 2", 300, Main.convertY(256 + 128 + 32));
-		main.vectorFont.draw(main.batch, "> option 3", 300, Main.convertY(256 + 128 + 64));
+		main.vectorFont.draw(main.batch, "OpTiOn 1", 288, Main.convertY(256 + 128));
+		main.vectorFont.draw(main.batch, "option 2", 288, Main.convertY(256 + 128 + 32));
+		main.vectorFont.draw(main.batch, "option 3", 288, Main.convertY(256 + 128 + 64));
 		
 		main.batch.end();
 	}
