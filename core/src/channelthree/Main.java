@@ -17,7 +17,7 @@ public class Main extends ionium.templates.Main {
 
 	@Override
 	public String getScreenToSwitchToAfterLoadingAssets() {
-		return "";
+		return "mainmenu";
 	}
 	
 	@Override
@@ -45,6 +45,7 @@ public class Main extends ionium.templates.Main {
 		
 		ScreenRegistry reg = ScreenRegistry.instance();
 		
+		reg.add("mainmenu", new MainMenuScreen(this));
 	}
 
 	@Override
