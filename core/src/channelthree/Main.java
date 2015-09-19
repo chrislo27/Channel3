@@ -3,14 +3,21 @@ package channelthree;
 import ionium.registry.AssetRegistry;
 import ionium.registry.ScreenRegistry;
 import ionium.util.Logger;
+import ionium.util.SpecialCharactersList;
 import channelthree.load.AssetLoader;
 import channelthree.load.ConstTweaks;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.utils.Array;
 
 public class Main extends ionium.templates.Main {
 
+	public BitmapFont vectorFont;
+	
 	public Main(Logger l) {
 		super(l);
 	}
@@ -76,11 +83,25 @@ public class Main extends ionium.templates.Main {
 	@Override
 	public void loadFont() {
 		super.loadFont();
+		
+		FreeTypeFontGenerator ttfGenerator = new FreeTypeFontGenerator(
+				Gdx.files.internal("fonts/KenVector Future Thin.ttf"));
+		FreeTypeFontParameter ttfParam = new FreeTypeFontParameter();
+		ttfParam.magFilter = TextureFilter.Nearest;
+		ttfParam.minFilter = TextureFilter.Nearest;
+		ttfParam.genMipMaps = true;
+		ttfParam.size = 24;
+		vectorFont = ttfGenerator.generateFont(ttfParam);
+		vectorFont.getData().markupEnabled = true;
+
+		ttfGenerator.dispose();
 	}
 
 	@Override
 	public void dispose() {
 		super.dispose();
+		
+		vectorFont.dispose();
 		
 		Settings.getPreferences().flush();
 	}
