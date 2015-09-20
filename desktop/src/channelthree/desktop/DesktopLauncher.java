@@ -22,7 +22,8 @@ public class DesktopLauncher {
 		config.backgroundFPS = ConstantsRegistry.getInt("MAX_FPS");
 		config.resizable = false;
 		config.vSyncEnabled = true;
-
+		config.samples = 4;
+		
 		config.addIcon("images/icon/icon32.png", FileType.Internal);
 		config.addIcon("images/icon/icon16.png", FileType.Internal);
 		config.addIcon("images/icon/icon128.png", FileType.Internal);
