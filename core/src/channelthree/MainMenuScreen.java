@@ -132,10 +132,12 @@ public class MainMenuScreen extends Updateable {
 
 	@Override
 	public void show() {
+		menu.onScreenShow();
 	}
 
 	@Override
 	public void hide() {
+		menu.onScreenHide();
 	}
 
 	@Override
