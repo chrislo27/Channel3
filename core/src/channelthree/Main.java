@@ -4,6 +4,7 @@ import ionium.registry.AssetRegistry;
 import ionium.registry.ScreenRegistry;
 import ionium.util.Logger;
 import ionium.util.SpecialCharactersList;
+import ionium.util.controllers.Xbox360Controllers;
 import channelthree.load.AssetLoader;
 import channelthree.load.ConstTweaks;
 
@@ -33,6 +34,7 @@ public class Main extends ionium.templates.Main {
 		
 		ConstTweaks.tweakConstants();
 		resizeScreenFromSettings();
+		Xbox360Controllers.instance().findControllers();
 		
 		AssetRegistry.instance().addAssetLoader(new AssetLoader());
 	}
