@@ -1,5 +1,8 @@
 package channelthree;
 
+import ionium.menutree.MenuElement;
+import ionium.menutree.MenuTree;
+import ionium.registry.ConstantsRegistry;
 import ionium.screen.Updateable;
 import ionium.templates.Main;
 import ionium.util.Translator;
@@ -11,16 +14,17 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.utils.Array;
 
-
-public class MainMenuScreen extends Updateable{
+public class MainMenuScreen extends Updateable {
 
 	public BitmapFont titleFont;
 	public channelthree.Main main;
-	
+
+	private MenuTree menu;
+
 	public MainMenuScreen(channelthree.Main m) {
 		super(m);
 		this.main = m;
-		
+
 		FreeTypeFontGenerator ttfGenerator = new FreeTypeFontGenerator(
 				Gdx.files.internal("fonts/KenVector Future Thin.ttf"));
 		FreeTypeFontParameter ttfParam = new FreeTypeFontParameter();
@@ -32,20 +36,80 @@ public class MainMenuScreen extends Updateable{
 		titleFont.getData().markupEnabled = true;
 
 		ttfGenerator.dispose();
+
+		menu = new MenuTree(main, 288f / ConstantsRegistry.getInt("DEFAULT_WIDTH"),
+				1f - (388f / ConstantsRegistry.getInt("DEFAULT_HEIGHT")), 32);
+
+		menu.addElement(new MenuElement(menu) {
+
+			@Override
+			public String getRenderText() {
+				return "option 1";
+			}
+
+		});
+		menu.addElement(new MenuElement(menu) {
+
+			@Override
+			public String getRenderText() {
+				return "option 2";
+			}
+
+		}.setSublevel(new Array<MenuElement>(new MenuElement[] { new MenuElement(menu) {
+
+			@Override
+			public String getRenderText() {
+				return "sub-option 1";
+			}
+
+		}, new MenuElement(menu) {
+
+			@Override
+			public String getRenderText() {
+				return "sub-option 2";
+			}
+
+		}.setSublevel(new Array<MenuElement>(new MenuElement[]{new MenuElement(menu) {
+
+			@Override
+			public String getRenderText() {
+				return "sub-sub-option 1";
+			}
+
+		}, new MenuElement(menu) {
+
+			@Override
+			public String getRenderText() {
+				return "sub-sub-option 2";
+			}
+
+		}})), new MenuElement(menu) {
+
+			@Override
+			public String getRenderText() {
+				return "sub-option 3";
+			}
+
+		} })));
+		menu.addElement(new MenuElement(menu) {
+
+			@Override
+			public String getRenderText() {
+				return "option 3";
+			}
+
+		});
 	}
 
 	@Override
 	public void render(float delta) {
 		main.batch.begin();
-		
+
 		titleFont.setColor(1, 1, 1, 1);
 		titleFont.draw(main.batch, Translator.getMsg("gamename"), 256, Main.convertY(256));
-		
-		main.vectorFont.setColor(1, 1, 1, 1);
-		main.vectorFont.draw(main.batch, "OpTiOn 1", 288, Main.convertY(256 + 128));
-		main.vectorFont.draw(main.batch, "option 2", 288, Main.convertY(256 + 128 + 32));
-		main.vectorFont.draw(main.batch, "option 3", 288, Main.convertY(256 + 128 + 64));
-		
+
+		menu.render(main.batch, main.vectorFont);
+
 		main.batch.end();
 	}
 
