@@ -42,7 +42,7 @@ public class Main extends ionium.templates.Main {
 				|| Gdx.graphics.getHeight() != Settings.actualHeight
 				|| Gdx.graphics.isFullscreen() != Settings.fullscreen) {
 			Gdx.graphics.setDisplayMode(Settings.actualWidth, Settings.actualHeight,
-					Settings.fullscreen);
+					false);
 		}
 	}
 	
