@@ -2,13 +2,16 @@ package channelthree;
 
 import ionium.registry.AssetRegistry;
 import ionium.registry.ScreenRegistry;
+import ionium.util.DebugSetting;
 import ionium.util.Logger;
 import ionium.util.SpecialCharactersList;
+import ionium.util.Translator;
 import ionium.util.controllers.Xbox360Controllers;
 import channelthree.load.AssetLoader;
 import channelthree.load.ConstTweaks;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -18,7 +21,7 @@ import com.badlogic.gdx.utils.Array;
 public class Main extends ionium.templates.Main {
 
 	public BitmapFont vectorFont;
-	
+
 	public Main(Logger l) {
 		super(l);
 	}
@@ -27,33 +30,32 @@ public class Main extends ionium.templates.Main {
 	public String getScreenToSwitchToAfterLoadingAssets() {
 		return "mainmenu";
 	}
-	
+
 	@Override
 	public void create() {
 		super.create();
-		
+
 		ConstTweaks.tweakConstants();
 		resizeScreenFromSettings();
 		Xbox360Controllers.instance().findControllers();
-		
+
 		AssetRegistry.instance().addAssetLoader(new AssetLoader());
 	}
 
-	private void resizeScreenFromSettings(){
+	private void resizeScreenFromSettings() {
 		if (Gdx.graphics.getWidth() != Settings.actualWidth
 				|| Gdx.graphics.getHeight() != Settings.actualHeight
 				|| Gdx.graphics.isFullscreen() != Settings.fullscreen) {
-			Gdx.graphics.setDisplayMode(Settings.actualWidth, Settings.actualHeight,
-					false);
+			Gdx.graphics.setDisplayMode(Settings.actualWidth, Settings.actualHeight, false);
 		}
 	}
-	
+
 	@Override
 	public void prepareStates() {
 		super.prepareStates();
-		
+
 		ScreenRegistry reg = ScreenRegistry.instance();
-		
+
 		reg.add("mainmenu", new MainMenuScreen(this));
 	}
 
@@ -71,9 +73,9 @@ public class Main extends ionium.templates.Main {
 	protected void postRender() {
 		super.postRender();
 	}
-	
+
 	@Override
-	protected Array<String> getDebugStrings(){
+	protected Array<String> getDebugStrings() {
 		return super.getDebugStrings();
 	}
 
@@ -83,9 +85,22 @@ public class Main extends ionium.templates.Main {
 	}
 
 	@Override
+	public void inputUpdate() {
+		super.inputUpdate();
+
+		if (Gdx.input.isKeyPressed(DebugSetting.DEBUG_KEY)) {
+			if (Gdx.input.isKeyPressed(Keys.I) && Gdx.input.isKeyJustPressed(Keys.N)) {
+				Translator.instance().reloadFromFile();
+				Main.logger.debug("Reloaded I18N from files");
+			}
+		}
+
+	}
+
+	@Override
 	public void loadFont() {
 		super.loadFont();
-		
+
 		FreeTypeFontGenerator ttfGenerator = new FreeTypeFontGenerator(
 				Gdx.files.internal("fonts/KenVector Future Thin.ttf"));
 		FreeTypeFontParameter ttfParam = new FreeTypeFontParameter();
@@ -102,9 +117,9 @@ public class Main extends ionium.templates.Main {
 	@Override
 	public void dispose() {
 		super.dispose();
-		
+
 		vectorFont.dispose();
-		
+
 		Settings.getPreferences().flush();
 	}
 
