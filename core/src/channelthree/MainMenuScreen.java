@@ -44,61 +44,11 @@ public class MainMenuScreen extends Updateable {
 
 			@Override
 			public String getRenderText() {
-				return "option 1";
+				return Translator.getMsg("menu.newgame");
 			}
 
 		});
-		menu.addElement(new MenuElement(menu) {
-
-			@Override
-			public String getRenderText() {
-				return "option 2";
-			}
-
-		}.setSublevel(new Array<MenuElement>(new MenuElement[] { new MenuElement(menu) {
-
-			@Override
-			public String getRenderText() {
-				return "sub-option 1";
-			}
-
-		}, new MenuElement(menu) {
-
-			@Override
-			public String getRenderText() {
-				return "sub-option 2";
-			}
-
-		}.setSublevel(new Array<MenuElement>(new MenuElement[]{new MenuElement(menu) {
-
-			@Override
-			public String getRenderText() {
-				return "sub-sub-option 1";
-			}
-
-		}, new MenuElement(menu) {
-
-			@Override
-			public String getRenderText() {
-				return "sub-sub-option 2";
-			}
-
-		}})), new MenuElement(menu) {
-
-			@Override
-			public String getRenderText() {
-				return "sub-option 3";
-			}
-
-		} })));
-		menu.addElement(new MenuElement(menu) {
-
-			@Override
-			public String getRenderText() {
-				return "option 3";
-			}
-
-		});
+		
 	}
 
 	@Override
