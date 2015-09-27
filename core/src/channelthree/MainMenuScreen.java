@@ -47,8 +47,58 @@ public class MainMenuScreen extends Updateable {
 				return Translator.getMsg("menu.newgame");
 			}
 
+			@Override
+			public boolean onAction() {
+				return false;
+			}
+
 		});
-		
+		menu.addElement(new MenuElement(menu) {
+
+			@Override
+			public String getRenderText() {
+				return Translator.getMsg("menu.continuegame");
+			}
+
+			@Override
+			public boolean onAction() {
+				return false;
+			}
+
+		});
+		menu.addElement(new MenuElement(menu) {
+
+			@Override
+			public String getRenderText() {
+				return Translator.getMsg("menu.options");
+			}
+
+			@Override
+			public boolean isEnabled() {
+				return false;
+			}
+
+			@Override
+			public boolean onAction() {
+				return false;
+			}
+
+		});
+		menu.addElement(new MenuElement(menu) {
+
+			@Override
+			public String getRenderText() {
+				return Translator.getMsg("menu.quit");
+			}
+
+			@Override
+			public boolean onAction() {
+				Gdx.app.exit();
+				return true;
+			}
+
+		});
+
 	}
 
 	@Override
