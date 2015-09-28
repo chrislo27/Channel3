@@ -10,16 +10,12 @@ public class Settings {
 
 	private static Settings instance;
 
-	public static float musicVolume = 1;
-	public static float soundVolume = 1;
+	public float musicVolume = 1;
+	public float soundVolume = 1;
 
-	public static int actualWidth = ConstantsRegistry.getInt("DEFAULT_WIDTH");
-	public static int actualHeight = ConstantsRegistry.getInt("DEFAULT_HEIGHT");
-	public static boolean fullscreen = false;
-
-	static {
-		Settings.instance(); // init settings
-	}
+	public int actualWidth = ConstantsRegistry.getInt("DEFAULT_WIDTH");
+	public int actualHeight = ConstantsRegistry.getInt("DEFAULT_HEIGHT");
+	public boolean fullscreen = false;
 
 	private Settings() {
 	}
