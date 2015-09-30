@@ -6,6 +6,7 @@ import ionium.registry.ConstantsRegistry;
 import ionium.screen.Updateable;
 import ionium.templates.Main;
 import ionium.util.Translator;
+import channelthree.util.RainEffect;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
@@ -64,6 +65,11 @@ public class MainMenuScreen extends Updateable {
 			public boolean onAction() {
 				return false;
 			}
+			
+			@Override
+			public boolean isEnabled(){
+				return true;
+			}
 
 		});
 		menu.addElement(new MenuElement(menu) {
@@ -105,6 +111,8 @@ public class MainMenuScreen extends Updateable {
 	public void render(float delta) {
 		main.batch.begin();
 
+		RainEffect.rainEffect(main.batch, 20, 4, 0.15f);
+		
 		titleFont.setColor(1, 1, 1, 1);
 		titleFont.draw(main.batch, Translator.getMsg("gamename"), 256, Main.convertY(256));
 
