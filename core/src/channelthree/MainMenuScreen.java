@@ -2,7 +2,7 @@ package channelthree;
 
 import ionium.menutree.MenuElement;
 import ionium.menutree.MenuTree;
-import ionium.registry.ConstantsRegistry;
+import ionium.registry.GlobalVariables;
 import ionium.screen.Updateable;
 import ionium.templates.Main;
 import ionium.util.Translator;
@@ -38,8 +38,8 @@ public class MainMenuScreen extends Updateable {
 
 		ttfGenerator.dispose();
 
-		menu = new MenuTree(main, 288f / ConstantsRegistry.getInt("DEFAULT_WIDTH"),
-				1f - (388f / ConstantsRegistry.getInt("DEFAULT_HEIGHT")), 32);
+		menu = new MenuTree(main, 288f / GlobalVariables.getInt("DEFAULT_WIDTH"),
+				1f - (388f / GlobalVariables.getInt("DEFAULT_HEIGHT")), 32);
 
 		menu.addElement(new MenuElement(menu) {
 
