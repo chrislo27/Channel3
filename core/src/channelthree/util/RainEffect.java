@@ -9,6 +9,10 @@ import com.badlogic.gdx.math.MathUtils;
 
 public final class RainEffect {
 
+	public static final int DEF_DROPS = 20;
+	public static final int DEF_SPLATS = 4;
+	public static final float DEF_PART_TO_SPLAT = 0.15f;
+	
 	/**
 	 * 
 	 * @param batch
