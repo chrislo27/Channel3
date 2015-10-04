@@ -111,7 +111,7 @@ public class MainMenuScreen extends Updateable {
 	public void render(float delta) {
 		main.batch.begin();
 
-		RainEffect.rainEffect(main.batch, 20, 4, 0.15f);
+		RainEffect.rainEffect(main.batch, RainEffect.DEF_DROPS, RainEffect.DEF_SPLATS, RainEffect.DEF_PART_TO_SPLAT);
 		
 		titleFont.setColor(1, 1, 1, 1);
 		titleFont.draw(main.batch, Translator.getMsg("gamename"), 256, Main.convertY(256));
