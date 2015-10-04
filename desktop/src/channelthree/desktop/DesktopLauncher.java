@@ -1,7 +1,7 @@
 package channelthree.desktop;
 
 import ionium.desktop.GameLwjglApp;
-import ionium.registry.ConstantsRegistry;
+import ionium.registry.GlobalVariables;
 import ionium.util.Logger;
 import channelthree.Main;
 
@@ -15,11 +15,11 @@ public class DesktopLauncher {
 	public static void main(String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "";
-		config.width = ConstantsRegistry.getInt("DEFAULT_WIDTH");
-		config.height = ConstantsRegistry.getInt("DEFAULT_HEIGHT");
+		config.width = GlobalVariables.getInt("DEFAULT_WIDTH");
+		config.height = GlobalVariables.getInt("DEFAULT_HEIGHT");
 		config.fullscreen = false;
-		config.foregroundFPS = ConstantsRegistry.getInt("MAX_FPS");
-		config.backgroundFPS = ConstantsRegistry.getInt("MAX_FPS");
+		config.foregroundFPS = GlobalVariables.getInt("MAX_FPS");
+		config.backgroundFPS = GlobalVariables.getInt("MAX_FPS");
 		config.resizable = false;
 		config.vSyncEnabled = true;
 		config.samples = 4;
