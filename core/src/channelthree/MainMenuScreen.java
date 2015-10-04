@@ -116,13 +116,14 @@ public class MainMenuScreen extends Updateable {
 		titleFont.setColor(1, 1, 1, 1);
 		titleFont.draw(main.batch, Translator.getMsg("gamename"), 256, Main.convertY(256));
 
-		menu.render(main.batch, main.vectorFont);
+		menu.render(main.batch, main.vectorFont, 1f);
 
 		main.batch.end();
 	}
 
 	@Override
 	public void renderUpdate() {
+		menu.renderUpdate();
 	}
 
 	@Override
