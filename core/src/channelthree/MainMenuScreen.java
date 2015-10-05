@@ -35,7 +35,6 @@ public class MainMenuScreen extends Updateable {
 		ttfParam.size = 72;
 		titleFont = ttfGenerator.generateFont(ttfParam);
 		titleFont.getData().markupEnabled = true;
-
 		ttfGenerator.dispose();
 
 		menu = new MenuTree(main, 288f / GlobalVariables.getInt("DEFAULT_WIDTH"),
@@ -65,7 +64,7 @@ public class MainMenuScreen extends Updateable {
 				return false;
 			}
 
-		}).addToSublevel(new MenuElement[]{new MenuElement(menu) {
+		}).addToSublevel(new MenuElement[] { new MenuElement(menu) {
 
 			@Override
 			public String getRenderText() {
@@ -101,7 +100,7 @@ public class MainMenuScreen extends Updateable {
 				return false;
 			}
 
-		}}));
+		} }));
 		menu.addElement(new MenuElement(menu) {
 
 			@Override
@@ -113,9 +112,9 @@ public class MainMenuScreen extends Updateable {
 			public boolean onAction() {
 				return false;
 			}
-			
+
 			@Override
-			public boolean isEnabled(){
+			public boolean isEnabled() {
 				return true;
 			}
 
@@ -131,7 +130,7 @@ public class MainMenuScreen extends Updateable {
 				return false;
 			}
 
-		}).addToSublevel(new MenuElement[]{new MenuElement(menu) {
+		}).addToSublevel(new MenuElement[] { new MenuElement(menu) {
 
 			@Override
 			public String getRenderText() {
@@ -167,7 +166,7 @@ public class MainMenuScreen extends Updateable {
 				return false;
 			}
 
-		}}));
+		} }));
 		menu.addElement(new MenuElement(menu) {
 
 			@Override
@@ -207,8 +206,11 @@ public class MainMenuScreen extends Updateable {
 	public void render(float delta) {
 		main.batch.begin();
 
-		RainEffect.rainEffect(main.batch, RainEffect.DEF_DROPS, RainEffect.DEF_SPLATS, RainEffect.DEF_PART_TO_SPLAT);
-		
+		if (main.getScreen() == this) {
+			RainEffect.rainEffect(main.batch, RainEffect.DEF_DROPS, RainEffect.DEF_SPLATS,
+					RainEffect.DEF_PART_TO_SPLAT);
+		}
+
 		titleFont.setColor(1, 1, 1, 1);
 		titleFont.draw(main.batch, Translator.getMsg("gamename"), 256, Main.convertY(256));
 
