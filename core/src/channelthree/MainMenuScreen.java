@@ -45,7 +45,7 @@ public class MainMenuScreen extends Updateable {
 
 			@Override
 			public String getRenderText() {
-				return Translator.getMsg("menu.newgame");
+				return Translator.getMsg("menu.newGame");
 			}
 
 			@Override
@@ -53,12 +53,60 @@ public class MainMenuScreen extends Updateable {
 				return false;
 			}
 
-		});
+		}.addToSublevel(new MenuElement(menu) {
+
+			@Override
+			public String getRenderText() {
+				return Translator.getMsg("menu.newSaveSlot");
+			}
+
+			@Override
+			public boolean onAction() {
+				return false;
+			}
+
+		}).addToSublevel(new MenuElement[]{new MenuElement(menu) {
+
+			@Override
+			public String getRenderText() {
+				return Translator.getMsg("menu.saveSlot", 1);
+			}
+
+			@Override
+			public boolean onAction() {
+				return false;
+			}
+
+		}, new MenuElement(menu) {
+
+			@Override
+			public String getRenderText() {
+				return Translator.getMsg("menu.saveSlot", 2);
+			}
+
+			@Override
+			public boolean onAction() {
+				return false;
+			}
+
+		}, new MenuElement(menu) {
+
+			@Override
+			public String getRenderText() {
+				return Translator.getMsg("menu.saveSlot", 3);
+			}
+
+			@Override
+			public boolean onAction() {
+				return false;
+			}
+
+		}}));
 		menu.addElement(new MenuElement(menu) {
 
 			@Override
 			public String getRenderText() {
-				return Translator.getMsg("menu.continuegame");
+				return Translator.getMsg("menu.continueGame");
 			}
 
 			@Override
@@ -71,7 +119,55 @@ public class MainMenuScreen extends Updateable {
 				return true;
 			}
 
-		});
+		}.addToSublevel(new MenuElement(menu) {
+
+			@Override
+			public String getRenderText() {
+				return Translator.getMsg("menu.loadSaveSlot");
+			}
+
+			@Override
+			public boolean onAction() {
+				return false;
+			}
+
+		}).addToSublevel(new MenuElement[]{new MenuElement(menu) {
+
+			@Override
+			public String getRenderText() {
+				return Translator.getMsg("menu.saveSlot", 1);
+			}
+
+			@Override
+			public boolean onAction() {
+				return false;
+			}
+
+		}, new MenuElement(menu) {
+
+			@Override
+			public String getRenderText() {
+				return Translator.getMsg("menu.saveSlot", 2);
+			}
+
+			@Override
+			public boolean onAction() {
+				return false;
+			}
+
+		}, new MenuElement(menu) {
+
+			@Override
+			public String getRenderText() {
+				return Translator.getMsg("menu.saveSlot", 3);
+			}
+
+			@Override
+			public boolean onAction() {
+				return false;
+			}
+
+		}}));
 		menu.addElement(new MenuElement(menu) {
 
 			@Override
