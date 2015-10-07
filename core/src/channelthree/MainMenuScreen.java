@@ -6,6 +6,7 @@ import ionium.registry.GlobalVariables;
 import ionium.screen.Updateable;
 import ionium.templates.Main;
 import ionium.util.Translator;
+import channelthree.savefile.SaveFile;
 import channelthree.util.RainEffect;
 
 import com.badlogic.gdx.Gdx;
@@ -73,7 +74,8 @@ public class MainMenuScreen extends Updateable {
 
 			@Override
 			public boolean onAction() {
-				return false;
+				SaveFile.instance().load(1).wipe();
+				return true;
 			}
 
 		}, new MenuElement(menu) {
@@ -85,7 +87,8 @@ public class MainMenuScreen extends Updateable {
 
 			@Override
 			public boolean onAction() {
-				return false;
+				SaveFile.instance().load(2).wipe();
+				return true;
 			}
 
 		}, new MenuElement(menu) {
@@ -97,7 +100,8 @@ public class MainMenuScreen extends Updateable {
 
 			@Override
 			public boolean onAction() {
-				return false;
+				SaveFile.instance().load(3).wipe();
+				return true;
 			}
 
 		} }));
@@ -139,7 +143,8 @@ public class MainMenuScreen extends Updateable {
 
 			@Override
 			public boolean onAction() {
-				return false;
+				SaveFile.instance().load(1);
+				return true;
 			}
 
 		}, new MenuElement(menu) {
@@ -151,7 +156,8 @@ public class MainMenuScreen extends Updateable {
 
 			@Override
 			public boolean onAction() {
-				return false;
+				SaveFile.instance().load(2);
+				return true;
 			}
 
 		}, new MenuElement(menu) {
@@ -163,7 +169,8 @@ public class MainMenuScreen extends Updateable {
 
 			@Override
 			public boolean onAction() {
-				return false;
+				SaveFile.instance().load(3);
+				return true;
 			}
 
 		} }));
