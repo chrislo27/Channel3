@@ -6,12 +6,25 @@ import com.badlogic.gdx.Preferences;
 
 public class SaveFile {
 
-	private int currentlyLoaded = -1;
-	Preferences pref = null;
+	private static SaveFile instance;
 
-	public SaveFile() {
+	private SaveFile() {
+	}
+
+	public static SaveFile instance() {
+		if (instance == null) {
+			instance = new SaveFile();
+			instance.loadResources();
+		}
+		return instance;
+	}
+
+	private void loadResources() {
 
 	}
+
+	private int currentlyLoaded = -1;
+	private Preferences pref = null;
 
 	public SaveFile load(int index) {
 		pref = Settings.getPref("savefile-" + index);
@@ -20,24 +33,32 @@ public class SaveFile {
 		return this;
 	}
 
+	public SaveFile wipe() {
+		if (!hasLoaded()) throw new IllegalStateException(
+				"Cannot clear savefile when nothing is loaded yet! (index: " + currentlyLoaded
+						+ ", pref null?: " + (pref == null) + ")");
+		
+		return this;
+	}
+
 	public SaveFile save() {
 		if (!hasLoaded()) throw new IllegalStateException(
 				"Cannot save savefile when nothing is loaded yet! (index: " + currentlyLoaded
 						+ ", pref null?: " + (pref == null) + ")");
-		
+
 		pref.flush();
-		
+
 		return this;
 	}
-	
-	public SaveFile unload(){
+
+	public SaveFile unload() {
 		if (!hasLoaded()) throw new IllegalStateException(
 				"Cannot unload savefile when nothing is loaded yet! (index: " + currentlyLoaded
 						+ ", pref null?: " + (pref == null) + ")");
-		
+
 		pref = null;
 		currentlyLoaded = -1;
-		
+
 		return this;
 	}
 
