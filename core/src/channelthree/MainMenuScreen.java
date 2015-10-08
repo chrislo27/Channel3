@@ -65,46 +65,9 @@ public class MainMenuScreen extends Updateable {
 				return false;
 			}
 
-		}).addToSublevel(new MenuElement[] { new MenuElement(menu) {
-
-			@Override
-			public String getRenderText() {
-				return Translator.getMsg("menu.saveSlot", 1);
-			}
-
-			@Override
-			public boolean onAction() {
-				SaveFile.instance().load(1).wipe();
-				return true;
-			}
-
-		}, new MenuElement(menu) {
-
-			@Override
-			public String getRenderText() {
-				return Translator.getMsg("menu.saveSlot", 2);
-			}
-
-			@Override
-			public boolean onAction() {
-				SaveFile.instance().load(2).wipe();
-				return true;
-			}
-
-		}, new MenuElement(menu) {
-
-			@Override
-			public String getRenderText() {
-				return Translator.getMsg("menu.saveSlot", 3);
-			}
-
-			@Override
-			public boolean onAction() {
-				SaveFile.instance().load(3).wipe();
-				return true;
-			}
-
-		} }));
+		}).addToSublevel(
+				new MenuElement[] { new MenuNew(menu, 1), new MenuNew(menu, 2),
+						new MenuNew(menu, 3) }));
 		menu.addElement(new MenuElement(menu) {
 
 			@Override
@@ -134,46 +97,9 @@ public class MainMenuScreen extends Updateable {
 				return false;
 			}
 
-		}).addToSublevel(new MenuElement[] { new MenuElement(menu) {
-
-			@Override
-			public String getRenderText() {
-				return Translator.getMsg("menu.saveSlot", 1);
-			}
-
-			@Override
-			public boolean onAction() {
-				SaveFile.instance().load(1);
-				return true;
-			}
-
-		}, new MenuElement(menu) {
-
-			@Override
-			public String getRenderText() {
-				return Translator.getMsg("menu.saveSlot", 2);
-			}
-
-			@Override
-			public boolean onAction() {
-				SaveFile.instance().load(2);
-				return true;
-			}
-
-		}, new MenuElement(menu) {
-
-			@Override
-			public String getRenderText() {
-				return Translator.getMsg("menu.saveSlot", 3);
-			}
-
-			@Override
-			public boolean onAction() {
-				SaveFile.instance().load(3);
-				return true;
-			}
-
-		} }));
+		}).addToSublevel(
+				new MenuElement[] { new MenuLoad(menu, 1), new MenuLoad(menu, 2),
+						new MenuLoad(menu, 3) }));
 		menu.addElement(new MenuElement(menu) {
 
 			@Override
@@ -265,6 +191,52 @@ public class MainMenuScreen extends Updateable {
 	@Override
 	public void dispose() {
 		titleFont.dispose();
+	}
+
+	private class MenuLoad extends MenuElement {
+
+		private int index = -1;
+
+		public MenuLoad(MenuTree tree, int i) {
+			super(tree);
+			index = i;
+		}
+
+		@Override
+		public String getRenderText() {
+			return Translator.getMsg("menu.saveslot", index);
+		}
+
+		@Override
+		public boolean onAction() {
+			SaveFile.instance().load(index);
+
+			return true;
+		}
+
+	}
+
+	private class MenuNew extends MenuElement {
+
+		private int index = -1;
+
+		public MenuNew(MenuTree tree, int i) {
+			super(tree);
+			index = i;
+		}
+
+		@Override
+		public String getRenderText() {
+			return Translator.getMsg("menu.saveslot", index);
+		}
+
+		@Override
+		public boolean onAction() {
+			SaveFile.instance().load(index).wipe();
+
+			return true;
+		}
+
 	}
 
 }
